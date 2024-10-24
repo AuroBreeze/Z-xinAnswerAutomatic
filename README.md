@@ -1,0 +1,2 @@
+# Z-xinAnswerAutomatic
+使用python进行对知新网站的内容获取进行自动答题
