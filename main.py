@@ -254,7 +254,7 @@ class AI_answer_homework():
             temperature=0.3,
         )
 
-        # 通过 API 我们获得了 Kimi 大模型给予我们的回复消息（role=assistant）
+        #通过 API 我们获得了 Kimi 大模型给予我们的回复消息（role=assistant）
         print(completion.choices[0].message.content)
 
 
