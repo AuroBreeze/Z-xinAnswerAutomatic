@@ -262,8 +262,8 @@ class AI_answer_homework():
 
 
 if __name__ == '__main__':
-    # username = "2024413493"
-    # password = "2024413493"
+    # username = ""
+    # password = ""
     # Get_Token = Get_Token(username, password)
     # Get_Token.get_token() # 将获取到的token存储
     # Get_Token.get_stu_info() # 存储获取到的学生ID和tcc_id
