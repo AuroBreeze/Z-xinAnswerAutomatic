@@ -1,0 +1,27 @@
+
+{
+    "code": 2000,
+    "data": {
+        "created": false,
+        "updated": true,
+        "studentQA": {
+            "stuAnswer": [
+                {
+                    "mark": "C"
+                }
+            ],
+            "corrected": true,
+            "_id": "671af63eeab7f5001f04b626",
+            "question": "62650d7dde882da6960ad0b4",
+            "questionSet": "6552273771ab5e001ac38abd",
+            "homework": "671a4c7f70b3ec001e7cbf68",
+            "student": "66eabfb9f92bd60018b69866",
+            "score": 0,
+            "createdAt": "2024-10-25T01:37:02.504Z",
+            "updatedAt": "2024-10-29T07:53:06.718Z",
+            "__v": 5,
+            "id": "671af63eeab7f5001f04b626"
+        }
+    },
+    "msg": "成功"
+}

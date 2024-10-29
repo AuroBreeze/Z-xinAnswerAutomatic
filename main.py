@@ -1,13 +1,13 @@
 import requests
 import base64
-
+from openai import OpenAI
 
 json_global_data = {
     "token": "",
     "student_id": "",
     "tcc_id": ""
 }
-
+#
 class Get_Token():
     def __init__(self, username, password):
         self.username = str(username)
@@ -129,7 +129,7 @@ class Get_Token():
         json_global_data["student_id"] = ""
         json_global_data["tcc_id"] = ""
 
-class Get_homework_afterclass():
+class Get_homework_afterclass(): #拿到所有题目的标题和ID
     def get_homework_total(self):
         url = "https://v2.api.z-xin.net/stu/homework/filter"
         header = {
@@ -147,14 +147,18 @@ class Get_homework_afterclass():
         msg = response["msg"]
         if code == 2000:
             total = response["data"]
-            #print("total:", total)
+
             json_homework_total = {
-                "title": "",
-                "id" : "",
+                "title": [],
+                "id" : [],
+                "start_time":[],
+                "end_time":[],
             }
             for num in total:
-
-                pass
+                json_homework_total["title"].append(num["title"])
+                json_homework_total["id"].append(num["_id"])
+                json_homework_total["start_time"].append(num["starttime"])
+                json_homework_total["end_time"].append(num["endtime"])
 
 
         else:
@@ -163,13 +167,112 @@ class Get_homework_afterclass():
             return None
         return total
 
+class Final_homework():
+    def judge_homnework_time(self):
+        pass
+    def get_homework_info(self,homework_id):
+        url = f"https://v2.api.z-xin.net/stu/homework/{homework_id}"
+        header = {
+            "Authorization" : f"Bearer {json_global_data['token']}",
+            "User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
+        response = requests.get(url, headers=header).json()
+
+        homework_info_list = [] # 存储所有题目
+
+        questions = response["data"]["questionSets"][0]["questions"] #拿到所有题目
+        set_id = response["data"]["questionSets"][0]["_id"]
+        #print(set_id)
+        for question in questions:
+            #print(question)
+            groupname = question["groupName"]
+            #print(groupname)
+            json_homework_info = {
+                    "homework_id": str(homework_id),
+                    "question_id": question["question_id"],
+                    "questionSet_id": str(set_id),
+                    "groupname": groupname,
+                    "content": "",
+                    "answer": []
+                }
+            content = question["content"]
+            json_homework_info["content"] = content
+
+            for answer in question["answer"]:
+                answer_choose = answer["mark"]
+                answer_choose = str(answer_choose).replace("\n", " ").replace("<p>", "").replace("</p>", "")
+                answer_content = str(answer["content"]).replace("\n", " ").replace("<p>", "").replace("</p>", "")
+
+                answer = f"{answer_choose}:{answer_content}  "
+                json_homework_info["answer"].append(answer)
+            homework_info_list.append(json_homework_info)
+
+        return homework_info_list
+    def submit_homework(self,json_data):
+        url = "https://v2.api.z-xin.net/stu/question/answerForQuestion"
+        header = {
+            "Authorization" : f"Bearer {json_global_data['token']}",
+            "User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
+        data={
+            "homnework_id":json_data["homework_id"],
+            "question_id":json_data["question_id"],
+            "questionSet_id":json_data["questionSet_id"],
+            "stuAnswer": [
+                {
+                    "mark": json_data["answer"]
+                }
+            ]
+        }
+        response = requests.post(url, headers=header,data=data).json()
+        msg = response["msg"]
+        code = response["code"]
+        if code == 2000:
+            print("提交成功")
+        else:
+            print("提交失败")
+            print(f"错误信息: {msg}")
+            return None
+        return None
+
+class AI_answer_homework():
+    def get_ai_answer(self,json_data):
+
+
+        client = OpenAI(
+            api_key="insert your api key here",  # 在这里将 MOONSHOT_API_KEY 替换为你从 Kimi 开放平台申请的 API Key
+            base_url="https://api.moonshot.cn/v1",
+        )
+
+        completion = client.chat.completions.create(
+            model="moonshot-v1-8k",
+            messages=[
+                {"role": "system",
+                 "content": "你是 Kimi，由 Moonshot AI 提供的人工智能助手，你更擅长中文和解决代码问题。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及恐怖主义，种族歧视，黄色暴力等问题的回答。Moonshot AI 为专有名词，不可翻译成其他语言。"},
+                {"role": "user", "content": f"{json_data["content"]+json_data['answer']}下面的问题如果是单选题请直接告诉我是哪个选项，如果是判断题请直接告诉我是T还是F"}
+            ],
+            temperature=0.3,
+        )
+
+        # 通过 API 我们获得了 Kimi 大模型给予我们的回复消息（role=assistant）
+        print(completion.choices[0].message.content)
+
+
+
+
 
 if __name__ == '__main__':
-    username = "2024413493"
-    password = "2024413493"
-    Get_Token = Get_Token(username, password)
-    Get_Token.get_token()
-    Get_Token.get_stu_info()
+    # username = "2024413493"
+    # password = "2024413493"
+    # Get_Token = Get_Token(username, password)
+    # Get_Token.get_token() # 将获取到的token存储
+    # Get_Token.get_stu_info() # 存储获取到的学生ID和tcc_id
+    #
+    # #Get_homework_afterclass = Get_homework_afterclass()
+    # #Get_homework_afterclass.get_homework_total()
+    #
+    # Final_homework = Final_homework()
+    # Final_homework.get_homework_info("671a4c7f70b3ec001e7cbf68")
 
-    Get_homework_afterclass = Get_homework_afterclass()
-    Get_homework_afterclass.get_homework_total()
+    ai_answer = AI_answer_homework()
+    ai_answer.get_ai_answer("你好，我是Kimi，你是谁？")

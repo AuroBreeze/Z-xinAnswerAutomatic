@@ -1,0 +1,572 @@
+{
+    "code": 2000,
+    "data": {
+        "control": 0,
+        "isShowScores": false,
+        "isShowScoreAfterEndtime": false,
+        "isShowAnswerAfterEndtime": true,
+        "isShowKnowledge": false,
+        "questionSets": [
+            {
+                "type": "全部",
+                "questions": [
+                    {
+                        "index": 1,
+                        "presetScore": 10,
+                        "question_id": "62650d7dde882da6960ad0b4",
+                        "groupName": "单选",
+                        "strict": false,
+                        "subjective": false,
+                        "isShare": true,
+                        "answer": [
+                            {
+                                "mark": "A",
+                                "content": "3"
+                            },
+                            {
+                                "mark": "B",
+                                "content": "6"
+                            },
+                            {
+                                "mark": "C",
+                                "content": "10"
+                            },
+                            {
+                                "mark": "D",
+                                "content": "20"
+                            }
+                        ],
+                        "knowledges": [],
+                        "expAbilities": [],
+                        "_id": "62650d7dde882da6960ad0b4",
+                        "content": "（一维数组）\n假定int类型变量占用两个字节，其有定义：int  x[10]={0,2,4};，则数组x在内存中所占字节数是(  ) ",
+                        "difficulty": 0,
+                        "type": "单选",
+                        "__v": 0,
+                        "studentQA": [
+                            {
+                                "stuAnswer": [
+                                    {
+                                        "mark": "D"
+                                    }
+                                ],
+                                "_id": "671af63eeab7f5001f04b626",
+                                "question": "62650d7dde882da6960ad0b4",
+                                "updatedAt": "2024-10-29T07:50:29.966Z",
+                                "score": 0
+                            }
+                        ],
+                        "id": "62650d7dde882da6960ad0b4"
+                    },
+                    {
+                        "index": 2,
+                        "presetScore": 10,
+                        "question_id": "62649e91cb5537bc61cf792c",
+                        "groupName": "单选",
+                        "strict": false,
+                        "subjective": false,
+                        "isShare": true,
+                        "answer": [
+                            {
+                                "mark": "A",
+                                "content": "arr[0]"
+                            },
+                            {
+                                "mark": "B",
+                                "content": "arr[1]"
+                            },
+                            {
+                                "mark": "C",
+                                "content": "arr[10-1]"
+                            },
+                            {
+                                "mark": "D",
+                                "content": "arr[7+3]"
+                            }
+                        ],
+                        "knowledges": [],
+                        "expAbilities": [],
+                        "_id": "62649e91cb5537bc61cf792c",
+                        "content": "（一维数组）\n若已定义 int arr[10];  则不能正确引用arr数组元素的是（  ）。\n\n",
+                        "difficulty": 1,
+                        "type": "单选",
+                        "__v": 0,
+                        "studentQA": [
+                            {
+                                "stuAnswer": [
+                                    {
+                                        "mark": "D"
+                                    }
+                                ],
+                                "_id": "671af647eab7f5001f04b629",
+                                "question": "62649e91cb5537bc61cf792c",
+                                "updatedAt": "2024-10-25T01:37:11.307Z",
+                                "score": 0
+                            }
+                        ],
+                        "id": "62649e91cb5537bc61cf792c"
+                    },
+                    {
+                        "index": 3,
+                        "presetScore": 10,
+                        "question_id": "62651083de882da6960ad0b5",
+                        "groupName": "单选",
+                        "strict": false,
+                        "subjective": false,
+                        "isShare": true,
+                        "answer": [
+                            {
+                                "mark": "A",
+                                "content": "整型常量  "
+                            },
+                            {
+                                "mark": "B",
+                                "content": "整型表达式"
+                            },
+                            {
+                                "mark": "C",
+                                "content": "整型常量或整型表达式"
+                            },
+                            {
+                                "mark": "D",
+                                "content": "任何类型的表达式"
+                            }
+                        ],
+                        "knowledges": [],
+                        "expAbilities": [],
+                        "_id": "62651083de882da6960ad0b5",
+                        "content": "（数组元素的表示）\n在c语言中,引用数组元素时,其数组下标的数据类型允许是(  ).\n        \n",
+                        "difficulty": 0,
+                        "type": "单选",
+                        "__v": 0,
+                        "studentQA": [
+                            {
+                                "stuAnswer": [
+                                    {
+                                        "mark": "C"
+                                    }
+                                ],
+                                "_id": "671af652eab7f5001f04b62a",
+                                "question": "62651083de882da6960ad0b5",
+                                "updatedAt": "2024-10-25T01:37:22.690Z",
+                                "score": 0
+                            }
+                        ],
+                        "id": "62651083de882da6960ad0b5"
+                    },
+                    {
+                        "index": 4,
+                        "presetScore": 10,
+                        "question_id": "6265ff1dde882da6960ad0bf",
+                        "groupName": "单选",
+                        "strict": false,
+                        "subjective": false,
+                        "isShare": true,
+                        "answer": [
+                            {
+                                "mark": "A",
+                                "content": "36"
+                            },
+                            {
+                                "mark": "B",
+                                "content": "16"
+                            },
+                            {
+                                "mark": "C",
+                                "content": "20"
+                            },
+                            {
+                                "mark": "D",
+                                "content": "18"
+                            }
+                        ],
+                        "knowledges": [],
+                        "expAbilities": [],
+                        "_id": "6265ff1dde882da6960ad0bf",
+                        "content": " （一维数组）以下程序段运行后x的值为（   ）。 \nint a[8]={1,2,3,4,5,6,7,8},i,x=0; \nfor(i=0;i<8;i++,i++)   \nx=x+a[i];\n\n",
+                        "difficulty": 0,
+                        "type": "单选",
+                        "__v": 0,
+                        "studentQA": [
+                            {
+                                "stuAnswer": [
+                                    {
+                                        "mark": "B"
+                                    }
+                                ],
+                                "_id": "671af667eab7f5001f04b62b",
+                                "question": "6265ff1dde882da6960ad0bf",
+                                "updatedAt": "2024-10-25T02:00:06.059Z",
+                                "score": 0
+                            }
+                        ],
+                        "id": "6265ff1dde882da6960ad0bf"
+                    },
+                    {
+                        "index": 5,
+                        "presetScore": 10,
+                        "question_id": "61971134b670eb2e5e89959c",
+                        "groupName": "单选",
+                        "strict": false,
+                        "subjective": false,
+                        "isShare": true,
+                        "answer": [
+                            {
+                                "mark": "A",
+                                "content": "将5个初值依次赋给a[1]至a[5]\n\n"
+                            },
+                            {
+                                "mark": "B",
+                                "content": "将5个初值依次赋给a[0]至a[4]\n"
+                            },
+                            {
+                                "mark": "C",
+                                "content": "将5个初值依次赋给a[6]至a[10]\n"
+                            },
+                            {
+                                "mark": "D",
+                                "content": "因为数组长度与初值的个数不相同，所以此语句不正确"
+                            }
+                        ],
+                        "knowledges": [],
+                        "expAbilities": [],
+                        "_id": "61971134b670eb2e5e89959c",
+                        "content": "016.一维数组：\nint a[10]={6,7,8,9,10};\n对于这个说明语句的正确理解是",
+                        "difficulty": 0,
+                        "type": "单选",
+                        "__v": 0,
+                        "studentQA": [
+                            {
+                                "stuAnswer": [
+                                    {
+                                        "mark": "B"
+                                    }
+                                ],
+                                "_id": "671af676eab7f5001f04b62d",
+                                "question": "61971134b670eb2e5e89959c",
+                                "updatedAt": "2024-10-25T01:37:58.742Z",
+                                "score": 0
+                            }
+                        ],
+                        "id": "61971134b670eb2e5e89959c"
+                    },
+                    {
+                        "index": 6,
+                        "presetScore": 10,
+                        "question_id": "6265f73bde882da6960ad0bb",
+                        "groupName": "单选",
+                        "strict": false,
+                        "subjective": false,
+                        "isShare": true,
+                        "answer": [
+                            {
+                                "mark": "A",
+                                "content": "定义数组后，数组的大小是固定的，且数组元素的数据类型都相同"
+                            },
+                            {
+                                "mark": "B",
+                                "content": "定义数组时，可不加类型说明符"
+                            },
+                            {
+                                "mark": "C",
+                                "content": "定义数组后，可通过赋值运算符\"=\"对该数组名直接赋值"
+                            },
+                            {
+                                "mark": "D",
+                                "content": "在数据类型中，数组属基本类型"
+                            }
+                        ],
+                        "knowledges": [],
+                        "expAbilities": [],
+                        "_id": "6265f73bde882da6960ad0bb",
+                        "title": "",
+                        "content": "下面关于数组的叙述中，正确的是（  ）。\n\n",
+                        "difficulty": 0,
+                        "type": "单选",
+                        "__v": 0,
+                        "studentQA": [
+                            {
+                                "stuAnswer": [
+                                    {
+                                        "mark": "D"
+                                    }
+                                ],
+                                "_id": "671af68deab7f5001f04b633",
+                                "question": "6265f73bde882da6960ad0bb",
+                                "updatedAt": "2024-10-25T01:38:21.987Z",
+                                "score": 0
+                            }
+                        ],
+                        "id": "6265f73bde882da6960ad0bb"
+                    },
+                    {
+                        "index": 7,
+                        "presetScore": 10,
+                        "question_id": "62650bc8de882da6960ad0b2",
+                        "groupName": "单选",
+                        "strict": false,
+                        "subjective": false,
+                        "isShare": true,
+                        "answer": [
+                            {
+                                "mark": "A",
+                                "content": "int a[5]=(0,1,2,3,4,)"
+                            },
+                            {
+                                "mark": "B",
+                                "content": "int a(5)={}  "
+                            },
+                            {
+                                "mark": "C",
+                                "content": "int a[3]={0,1,2} "
+                            },
+                            {
+                                "mark": "D",
+                                "content": "int a{5}={10*1}"
+                            }
+                        ],
+                        "knowledges": [],
+                        "expAbilities": [],
+                        "_id": "62650bc8de882da6960ad0b2",
+                        "title": "",
+                        "content": "以下能对一维数组a进行初始化的语句是: (      )\n \n",
+                        "difficulty": 1,
+                        "type": "单选",
+                        "__v": 0,
+                        "studentQA": [
+                            {
+                                "stuAnswer": [
+                                    {
+                                        "mark": "C"
+                                    }
+                                ],
+                                "_id": "671af6aceab7f5001f04b634",
+                                "question": "62650bc8de882da6960ad0b2",
+                                "updatedAt": "2024-10-25T01:38:52.081Z",
+                                "score": 0
+                            }
+                        ],
+                        "id": "62650bc8de882da6960ad0b2"
+                    },
+                    {
+                        "index": 8,
+                        "presetScore": 10,
+                        "question_id": "62650adfde882da6960ad0b1",
+                        "groupName": "单选",
+                        "strict": false,
+                        "subjective": false,
+                        "isShare": true,
+                        "answer": [
+                            {
+                                "mark": "A",
+                                "content": "char a（10）；"
+                            },
+                            {
+                                "mark": "B",
+                                "content": "int a[]；"
+                            },
+                            {
+                                "mark": "C",
+                                "content": "int k，a[k]；"
+                            },
+                            {
+                                "mark": "D",
+                                "content": "char  a[3]={‘a’,’b’,’c’};"
+                            }
+                        ],
+                        "knowledges": [],
+                        "expAbilities": [],
+                        "_id": "62650adfde882da6960ad0b1",
+                        "title": "",
+                        "content": "以下对一维数组a的正确说明是：       \n",
+                        "difficulty": 1,
+                        "type": "单选",
+                        "__v": 0,
+                        "studentQA": [
+                            {
+                                "stuAnswer": [
+                                    {
+                                        "mark": "D"
+                                    }
+                                ],
+                                "_id": "671af6c7eab7f5001f04b635",
+                                "question": "62650adfde882da6960ad0b1",
+                                "updatedAt": "2024-10-25T01:39:19.931Z",
+                                "score": 0
+                            }
+                        ],
+                        "id": "62650adfde882da6960ad0b1"
+                    },
+                    {
+                        "index": 9,
+                        "presetScore": 10,
+                        "question_id": "62650c78de882da6960ad0b3",
+                        "groupName": "单选",
+                        "strict": false,
+                        "subjective": false,
+                        "isShare": true,
+                        "answer": [
+                            {
+                                "mark": "A",
+                                "content": "<p>10</p>\n"
+                            },
+                            {
+                                "mark": "B",
+                                "content": "<p>9</p>\n"
+                            },
+                            {
+                                "mark": "C",
+                                "content": "<p>6</p>\n"
+                            },
+                            {
+                                "mark": "D",
+                                "content": "<p>5</p>\n"
+                            }
+                        ],
+                        "knowledges": [],
+                        "expAbilities": [],
+                        "_id": "62650c78de882da6960ad0b3",
+                        "content": "<p>（一维数组） 若有以下数组说明，则i=10;a[a[i]]元素数值是（ 　）。 int a[12]={1,4,7,10,2,5,8,11,3,6,9,12};</p>",
+                        "difficulty": 2,
+                        "type": "单选",
+                        "__v": 1,
+                        "lastModifyBy": "612b83fb7087112fed85532b",
+                        "studentQA": [
+                            {
+                                "stuAnswer": [
+                                    {
+                                        "mark": "C"
+                                    }
+                                ],
+                                "_id": "671af6dbeab7f5001f04b636",
+                                "question": "62650c78de882da6960ad0b3",
+                                "updatedAt": "2024-10-25T01:39:39.402Z",
+                                "score": 0
+                            }
+                        ],
+                        "id": "62650c78de882da6960ad0b3"
+                    },
+                    {
+                        "index": 10,
+                        "presetScore": 10,
+                        "question_id": "62aa94d9afb477ca7b6c1242",
+                        "groupName": "判断",
+                        "strict": false,
+                        "subjective": false,
+                        "isShare": true,
+                        "answer": [
+                            {
+                                "mark": "T",
+                                "content": "正确"
+                            },
+                            {
+                                "mark": "F",
+                                "content": "错误"
+                            }
+                        ],
+                        "knowledges": [],
+                        "expAbilities": [],
+                        "_id": "62aa94d9afb477ca7b6c1242",
+                        "title": "",
+                        "content": "7.\t数组的下标都是从1开始的。",
+                        "difficulty": 0,
+                        "type": "判断",
+                        "__v": 0,
+                        "studentQA": [
+                            {
+                                "stuAnswer": [
+                                    {
+                                        "mark": "F"
+                                    }
+                                ],
+                                "_id": "671af6dfeab7f5001f04b638",
+                                "question": "62aa94d9afb477ca7b6c1242",
+                                "updatedAt": "2024-10-25T01:39:43.271Z",
+                                "score": 0
+                            }
+                        ],
+                        "id": "62aa94d9afb477ca7b6c1242"
+                    }
+                ],
+                "questionsMeta": [
+                    {
+                        "index": 1,
+                        "presetScore": 10,
+                        "question_id": "62650d7dde882da6960ad0b4",
+                        "groupName": "单选"
+                    },
+                    {
+                        "index": 2,
+                        "presetScore": 10,
+                        "question_id": "62649e91cb5537bc61cf792c",
+                        "groupName": "单选"
+                    },
+                    {
+                        "index": 3,
+                        "presetScore": 10,
+                        "question_id": "62651083de882da6960ad0b5",
+                        "groupName": "单选"
+                    },
+                    {
+                        "index": 4,
+                        "presetScore": 10,
+                        "question_id": "6265ff1dde882da6960ad0bf",
+                        "groupName": "单选"
+                    },
+                    {
+                        "index": 5,
+                        "presetScore": 10,
+                        "question_id": "61971134b670eb2e5e89959c",
+                        "groupName": "单选"
+                    },
+                    {
+                        "index": 6,
+                        "presetScore": 10,
+                        "question_id": "6265f73bde882da6960ad0bb",
+                        "groupName": "单选"
+                    },
+                    {
+                        "index": 7,
+                        "presetScore": 10,
+                        "question_id": "62650bc8de882da6960ad0b2",
+                        "groupName": "单选"
+                    },
+                    {
+                        "index": 8,
+                        "presetScore": 10,
+                        "question_id": "62650adfde882da6960ad0b1",
+                        "groupName": "单选"
+                    },
+                    {
+                        "index": 9,
+                        "presetScore": 10,
+                        "question_id": "62650c78de882da6960ad0b3",
+                        "groupName": "单选"
+                    },
+                    {
+                        "index": 10,
+                        "presetScore": 10,
+                        "question_id": "62aa94d9afb477ca7b6c1242",
+                        "groupName": "判断"
+                    }
+                ],
+                "_id": "6552273771ab5e001ac38abd"
+            }
+        ],
+        "_id": "671a4c7f70b3ec001e7cbf68",
+        "title": "一维数组",
+        "tcc": "66ebffbe70b3ec001e7cb2f7",
+        "course": "60fcea30e7743103807085ee",
+        "receiverType": "Classroom",
+        "receiver": "66f27c7c70b3ec001e7cb526",
+        "starttime": "2024-10-25T01:30:00.000Z",
+        "endtime": "2024-10-29T16:00:00.000Z",
+        "category": "课后作业",
+        "creator": "612b83fb7087112fed85532b",
+        "createdAt": "2024-10-24T13:32:47.418Z",
+        "updatedAt": "2024-10-24T13:32:47.418Z",
+        "__v": 0,
+        "isEnd": false
+    },
+    "msg": "成功"
+}
