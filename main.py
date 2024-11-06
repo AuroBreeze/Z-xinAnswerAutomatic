@@ -1,6 +1,7 @@
 import requests
 import base64
 from openai import OpenAI
+import time
 
 json_global_data = {
     "token": "",
@@ -165,7 +166,9 @@ class Get_homework_afterclass(): #拿到所有题目的标题和ID
             print("获取课后作业失败")
             print(f"错误信息: {msg}")
             return None
-        return total
+        #print(json_homework_total)
+        return json_homework_total
+
 
 class Final_homework():
     def judge_homnework_time(self):
@@ -200,8 +203,8 @@ class Final_homework():
 
             for answer in question["answer"]:
                 answer_choose = answer["mark"]
-                answer_choose = str(answer_choose).replace("\n", " ").replace("<p>", "").replace("</p>", "")
-                answer_content = str(answer["content"]).replace("\n", " ").replace("<p>", "").replace("</p>", "")
+                answer_choose = str(answer_choose).replace("\\n", " ").replace("<p>", "").replace("</p>", "")
+                answer_content = str(answer["content"]).replace("\\n", " ").replace("<p>", "").replace("</p>", "")
 
                 answer = f"{answer_choose}:{answer_content}  "
                 json_homework_info["answer"].append(answer)
@@ -220,7 +223,7 @@ class Final_homework():
             "questionSet_id":json_data["questionSet_id"],
             "stuAnswer": [
                 {
-                    "mark": json_data["answer"]
+                    "mark": json_data["answer"],"iud3i43v8ud":"="
                 }
             ]
         }
@@ -237,42 +240,88 @@ class Final_homework():
 
 class AI_answer_homework():
     def get_ai_answer(self,json_data):
+        #print(json_data)
+        # 将answer列表中的元素用空格连接成字符串
+        answer_str = ' '.join(json_data['answer'])
 
+        # 将content和answer_str拼接成一个新的字符串
+        combined_string = json_data['content'].strip() + ' ' + answer_str.strip()
 
-        client = OpenAI(
-            api_key="insert your api key here",  # 在这里将 MOONSHOT_API_KEY 替换为你从 Kimi 开放平台申请的 API Key
-            base_url="https://api.moonshot.cn/v1",
-        )
+        #print(combined_string)
+        # client = OpenAI(
+        #     api_key="sk-Rgz25S2XMfSdJcrCkSZVSi043RJii40wpoFye6rbGynmMFK0",  # 在这里将 MOONSHOT_API_KEY 替换为你从 Kimi 开放平台申请的 API Key
+        #     base_url="https://api.moonshot.cn/v1",
+        # )
+        #
+        # completion = client.chat.completions.create(
+        #     model="moonshot-v1-8k",
+        #     messages=[
+        #         {"role": "system",
+        #          "content": "你是 Kimi，由 Moonshot AI 提供的人工智能助手，你更擅长中文和解决代码问题。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及恐怖主义，种族歧视，黄色暴力等问题的回答。Moonshot AI 为专有名词，不可翻译成其他语言。"},
+        #         {"role": "user", "content": f"{combined_string} 。下面的问题如果是单选题请直接告诉我是哪个选项A,B,C,D(不要重复选项后面的内容)，如果是判断题请直接告诉我是T还是F"}
+        #     ],
+        #     temperature=0.3,
+        # )
+        #
+        try:
+            client = OpenAI(
+                # 若没有配置环境变量，请用百炼API Key将下行替换为：api_key="sk-xxx",
+                api_key="sk-a4f70953edbe45eb953d5401212c0082",
+                base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+            )
 
-        completion = client.chat.completions.create(
-            model="moonshot-v1-8k",
-            messages=[
-                {"role": "system",
-                 "content": "你是 Kimi，由 Moonshot AI 提供的人工智能助手，你更擅长中文和解决代码问题。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及恐怖主义，种族歧视，黄色暴力等问题的回答。Moonshot AI 为专有名词，不可翻译成其他语言。"},
-                {"role": "user", "content": f"{json_data["content"]+json_data['answer']}下面的问题如果是单选题请直接告诉我是哪个选项，如果是判断题请直接告诉我是T还是F"}
-            ],
-            temperature=0.3,
-        )
-
+            completion = client.chat.completions.create(
+                model="qwen-plus",  # 模型列表：https://help.aliyun.com/zh/model-studio/getting-started/models
+                messages=[
+                    {'role': 'system',
+                     'content': '你更擅长中文和解决代码问题。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及恐怖主义，种族歧视，黄色暴力等问题的回答。'},
+                    {'role': 'user',
+                     'content':  f"{combined_string} 。'下面的问题如果是单选题请直接告诉我是哪个选项A,B,C,D(不要重复选项后面的内容)，如果是判断题请直接告诉我是T还是F"}
+                ]
+            )
+            print(completion.choices[0].message.content)
+        except Exception as e:
+            print(f"错误信息：{e}")
+            print("请参考文档：https://help.aliyun.com/zh/model-studio/developer-reference/error-code")
         #通过 API 我们获得了 Kimi 大模型给予我们的回复消息（role=assistant）
-        print(completion.choices[0].message.content)
+
+        json_data={
+            "homework_id":json_data["homework_id"],
+            "question_id":json_data["question_id"],
+            "questionSet_id":json_data["questionSet_id"],
+            "answer":completion.choices[0].message.content.upper()
+        }
+        return json_data
+
 
 
 
 
 
 if __name__ == '__main__':
-    # username = ""
-    # password = ""
-    # Get_Token = Get_Token(username, password)
-    # Get_Token.get_token() # 将获取到的token存储
-    # Get_Token.get_stu_info() # 存储获取到的学生ID和tcc_id
-    #
-    # #Get_homework_afterclass = Get_homework_afterclass()
-    # #Get_homework_afterclass.get_homework_total()
-    #
-    # Final_homework = Final_homework()
-    # Final_homework.get_homework_info("671a4c7f70b3ec001e7cbf68")
+    username = "2024413493"
+    password = "2024413493"
+    Get_Token = Get_Token(username, password)
+    Get_Token.get_token() # 将获取到的token存储
+    Get_Token.get_stu_info() # 存储获取到的学生ID和tcc_id
 
+    Get_homework_afterclass = Get_homework_afterclass()
+    Get_homework_afterclass_data = Get_homework_afterclass.get_homework_total()
+
+
+    Final_homework = Final_homework()
     ai_answer = AI_answer_homework()
-    ai_answer.get_ai_answer("你好，我是Kimi，你是谁？")
+
+    i=0
+    for Get_homework_afterclass_data_id in Get_homework_afterclass_data["id"]:
+        i +=1
+        Final_homework_data = Final_homework.get_homework_info(Get_homework_afterclass_data_id)
+        for Final_homework_data_info in Final_homework_data:
+            answer = ai_answer.get_ai_answer(Final_homework_data_info)
+
+            #Final_homework.submit_homework(answer)
+
+        if i>0:
+            break
+
+
