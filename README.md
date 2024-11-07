@@ -7,7 +7,12 @@
 - 自动获取题目
 - 自动获取答案
 
+### 注意
+
+在 `https://bailian.console.aliyun.com/#/home` 中获取api_key
+
 ## BUG
 若出现bug，请在issue中留言。
 
 # AuroBreeze制作
+
