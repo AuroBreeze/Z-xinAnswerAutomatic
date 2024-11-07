@@ -2,6 +2,7 @@ import requests
 import base64
 from openai import OpenAI
 import time
+import yaml
 
 json_global_data = {
     "token": "",
@@ -239,6 +240,11 @@ class Final_homework():
         return None
 
 class AI_answer_homework():
+    def __init__(self):
+        with open("config.yml", "r") as file:
+            data = yaml.safe_load(file)
+        self.api_key = data["api_key"]
+
     def get_ai_answer(self,json_data):
         #print(json_data)
         # 将answer列表中的元素用空格连接成字符串
@@ -247,26 +253,11 @@ class AI_answer_homework():
         # 将content和answer_str拼接成一个新的字符串
         combined_string = json_data['content'].strip() + ' ' + answer_str.strip()
 
-        #print(combined_string)
-        # client = OpenAI(
-        #     api_key="sk-Rgz25S2XMfSdJcrCkSZVSi043RJii40wpoFye6rbGynmMFK0",  # 在这里将 MOONSHOT_API_KEY 替换为你从 Kimi 开放平台申请的 API Key
-        #     base_url="https://api.moonshot.cn/v1",
-        # )
-        #
-        # completion = client.chat.completions.create(
-        #     model="moonshot-v1-8k",
-        #     messages=[
-        #         {"role": "system",
-        #          "content": "你是 Kimi，由 Moonshot AI 提供的人工智能助手，你更擅长中文和解决代码问题。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及恐怖主义，种族歧视，黄色暴力等问题的回答。Moonshot AI 为专有名词，不可翻译成其他语言。"},
-        #         {"role": "user", "content": f"{combined_string} 。下面的问题如果是单选题请直接告诉我是哪个选项A,B,C,D(不要重复选项后面的内容)，如果是判断题请直接告诉我是T还是F"}
-        #     ],
-        #     temperature=0.3,
-        # )
-        #
+
         try:
             client = OpenAI(
                 # 若没有配置环境变量，请用百炼API Key将下行替换为：api_key="sk-xxx",
-                api_key="sk-a4f70953edbe45eb953d5401212c0082",
+                api_key=self.api_key,
                 base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
             )
 
