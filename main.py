@@ -1,7 +1,6 @@
 import requests
 import base64
 from openai import OpenAI
-import time
 import yaml
 
 json_global_data = {
@@ -167,7 +166,7 @@ class Get_homework_afterclass(): #拿到所有题目的标题和ID
             print("获取课后作业失败")
             print(f"错误信息: {msg}")
             return None
-        #print(json_homework_total)
+
         return json_homework_total
 
 
@@ -257,7 +256,7 @@ class AI_answer_homework():
         try:
             client = OpenAI(
                 # 若没有配置环境变量，请用百炼API Key将下行替换为：api_key="sk-xxx",
-                api_key=self.api_key,
+                api_key=self.api_key, # https://bailian.console.aliyun.com/#/home 申请地址
                 base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
             )
 
@@ -270,11 +269,11 @@ class AI_answer_homework():
                      'content':  f"{combined_string} 。'下面的问题如果是单选题请直接告诉我是哪个选项A,B,C,D(不要重复选项后面的内容)，如果是判断题请直接告诉我是T还是F"}
                 ]
             )
-            print(completion.choices[0].message.content)
+            #print(completion.choices[0].message.content)
         except Exception as e:
+            completion = "A"
             print(f"错误信息：{e}")
             print("请参考文档：https://help.aliyun.com/zh/model-studio/developer-reference/error-code")
-        #通过 API 我们获得了 Kimi 大模型给予我们的回复消息（role=assistant）
 
         json_data={
             "homework_id":json_data["homework_id"],
@@ -284,9 +283,10 @@ class AI_answer_homework():
         }
         return json_data
 
+    def cout_homework_answer(self,answer_json,id,title):
+        print(f"作业[{title}]：id:{id} 题目id：[{answer_json['question_id']}] 答案：[{answer_json['answer']}]")
 
-
-
+        pass
 
 
 if __name__ == '__main__':
@@ -296,23 +296,33 @@ if __name__ == '__main__':
     Get_Token.get_token() # 将获取到的token存储
     Get_Token.get_stu_info() # 存储获取到的学生ID和tcc_id
 
-    Get_homework_afterclass = Get_homework_afterclass()
-    Get_homework_afterclass_data = Get_homework_afterclass.get_homework_total()
+    Get_homework_afterclass = Get_homework_afterclass() # 实例化获取课后作业类
+    Get_homework_afterclass_data = Get_homework_afterclass.get_homework_total() # 获取所有课后作业的标题和ID
 
 
     Final_homework = Final_homework()
     ai_answer = AI_answer_homework()
 
-    i=0
-    for Get_homework_afterclass_data_id in Get_homework_afterclass_data["id"]:
-        i +=1
-        Final_homework_data = Final_homework.get_homework_info(Get_homework_afterclass_data_id)
-        for Final_homework_data_info in Final_homework_data:
+
+    len = len(Get_homework_afterclass_data["id"])
+    for i in range(len):
+        Get_homework_afterclass_data_id = Get_homework_afterclass_data["id"][i] # 遍历所有课后作业的ID
+        Get_homework_afterclass_data_title = Get_homework_afterclass_data["title"][i] # 遍历所有课后作业的标题
+
+
+        Final_homework_data = Final_homework.get_homework_info(Get_homework_afterclass_data_id) # 获取每道题目的信息
+        for Final_homework_data_info in Final_homework_data: # 遍历每道题目的信息
             answer = ai_answer.get_ai_answer(Final_homework_data_info)
+            cout = AI_answer_homework().cout_homework_answer(answer,Final_homework_data_info["question_id"],Get_homework_afterclass_data_title)
 
-            #Final_homework.submit_homework(answer)
 
-        if i>0:
-            break
-
+    # for Get_homework_afterclass_data_id in Get_homework_afterclass_data["id"]: # 遍历所有课后作业的ID
+    #     i +=1
+    #     Final_homework_data = Final_homework.get_homework_info(Get_homework_afterclass_data_id) # 获取每道题目的信息
+    #     for Final_homework_data_info in Final_homework_data: # 遍历每道题目的信息
+    #         answer = ai_answer.get_ai_answer(Final_homework_data_info)
+    #
+    #     if i>0:
+    #         break
+    #
 
