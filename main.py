@@ -242,7 +242,7 @@ class AI_answer_homework():
     def __init__(self):
         with open("config.yml", "r") as file:
             data = yaml.safe_load(file)
-        self.api_key = data["api_key"]
+        self.api_key = data["Basic_Information"]["api_key"]
 
     def get_ai_answer(self,json_data):
         #print(json_data)
@@ -264,7 +264,7 @@ class AI_answer_homework():
                 model="qwen-plus",  # 模型列表：https://help.aliyun.com/zh/model-studio/getting-started/models
                 messages=[
                     {'role': 'system',
-                     'content': '你更擅长中文和解决代码问题。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及恐怖主义，种族歧视，黄色暴力等问题的回答。'},
+                     'content': '你更擅长中文和解决C++代码问题。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及恐怖主义，种族歧视，黄色暴力等问题的回答。'},
                     {'role': 'user',
                      'content':  f"{combined_string} 。'下面的问题如果是单选题请直接告诉我是哪个选项A,B,C,D(不要重复选项后面的内容)，如果是判断题请直接告诉我是T还是F"}
                 ]
@@ -290,8 +290,11 @@ class AI_answer_homework():
 
 
 if __name__ == '__main__':
-    username = "2024413493"
-    password = "2024413493"
+    with open("config.yml", "r") as file:
+        data = yaml.safe_load(file)
+    username = data["Basic_Information"]["username"]
+    password = data["Basic_Information"]["password"]
+
     Get_Token = Get_Token(username, password)
     Get_Token.get_token() # 将获取到的token存储
     Get_Token.get_stu_info() # 存储获取到的学生ID和tcc_id
@@ -314,15 +317,3 @@ if __name__ == '__main__':
         for Final_homework_data_info in Final_homework_data: # 遍历每道题目的信息
             answer = ai_answer.get_ai_answer(Final_homework_data_info)
             cout = AI_answer_homework().cout_homework_answer(answer,Final_homework_data_info["question_id"],Get_homework_afterclass_data_title)
-
-
-    # for Get_homework_afterclass_data_id in Get_homework_afterclass_data["id"]: # 遍历所有课后作业的ID
-    #     i +=1
-    #     Final_homework_data = Final_homework.get_homework_info(Get_homework_afterclass_data_id) # 获取每道题目的信息
-    #     for Final_homework_data_info in Final_homework_data: # 遍历每道题目的信息
-    #         answer = ai_answer.get_ai_answer(Final_homework_data_info)
-    #
-    #     if i>0:
-    #         break
-    #
-
