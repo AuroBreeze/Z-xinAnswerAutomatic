@@ -266,7 +266,7 @@ class AI_answer_homework():
                     {'role': 'system',
                      'content': '你更擅长中文和解决C++代码问题。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及恐怖主义，种族歧视，黄色暴力等问题的回答。'},
                     {'role': 'user',
-                     'content':  f"{combined_string} 。'下面的问题如果是单选题请直接告诉我是哪个选项A,B,C,D(不要重复选项后面的内容)，如果是判断题请直接告诉我是T还是F"}
+                     'content':  f"{combined_string} 。'下面的问题如果是单选题请直接告诉我是哪个选项A,B,C,D(不要重复选项后面的内容)，如果是判断题请直接告诉我是T还是F,如果是填空题请直接告诉第几个空答案是什么，如果是写程序的题请直接将程序写出来(不需要任何解释)。"}
                 ]
             )
             #print(completion.choices[0].message.content)
@@ -279,7 +279,7 @@ class AI_answer_homework():
             "homework_id":json_data["homework_id"],
             "question_id":json_data["question_id"],
             "questionSet_id":json_data["questionSet_id"],
-            "answer":completion.choices[0].message.content.upper()
+            "answer":completion.choices[0].message.content#.upper()
         }
         return json_data
 
