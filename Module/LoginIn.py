@@ -2,7 +2,8 @@ import requests
 import base64
 import yaml
 
-from Module.Logger import Logger
+
+
 from Module.Shared_Data import json_global_data_stu
 
 class Get_Token():
@@ -24,18 +25,18 @@ class Get_Token():
             code = response['code']
             msg = response["msg"]
             if code == 2000:
-                Logger().Message_Log_Info("登录成功")
+                print("登录成功")
                 token = response["data"]["token"]
                 json_global_data_stu["token"] = token  # 全局变量，存储token
 
-                Logger().Message_Log_Info(f"token: {token}")
+                print(f"token: {token}")
             else:
 
-                Logger().Message_Log_Error("登录失败")
-                Logger().Message_Log_Error(f"错误信息: {msg}")
+                print("登录失败")
+                print(f"错误信息: {msg}")
                 return None
         except:
-            Logger().Message_Log_Error("登录失败")
+            print("登录失败")
             return None
         return token
 
@@ -70,12 +71,12 @@ class Get_Token():
                     "student_id": student_id,
                     "tcc_id": tcc_id
                 }
-                Logger().Message_Log_Info(f"学生信息: {json_data}")
+                print(f"学生信息: {json_data}\n")
             else:
-                Logger().Message_Log_Error("获取学生信息失败")
+                print("获取学生信息失败")
                 return None
         except:
-            Logger().Message_Log_Error("获取学生信息失败")
+            print("获取学生信息失败")
             return None
         return json_data
 
@@ -123,11 +124,11 @@ class Get_Token():
                 tcc_id = response['data'][0]['_id']
                 json_global_data_stu["tcc_id"] = str(tcc_id)  # 全局变量，存储tcc_id
             else:
-                Logger().Message_Log_Error("获取tcc_id失败")
+                print("获取tcc_id失败")
                 return None
             return tcc_id
         except:
-            Logger().Message_Log_Error("获取tcc_id失败")
+            print("获取tcc_id失败")
             return None
 
 class LoginIn():

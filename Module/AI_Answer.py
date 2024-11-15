@@ -1,7 +1,7 @@
 import yaml
 from openai import OpenAI
 
-from Module.Logger import Logger
+
 
 class AI_answer_homework():
     def __init__(self):
