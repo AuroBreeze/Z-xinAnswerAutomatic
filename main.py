@@ -2,8 +2,6 @@ __author__ = 'AuroBreeze'
 __version__ = '1.0.0'
 __date__ = '2024-11-09'
 __license__ = 'MIT'
-__copyright__ = 'Copyright 2024-2021 AuroBreeze'
-__status__ = 'Production'
 # BLOG URL: https://blog.aurobreeze.top/
 
 import requests
@@ -21,14 +19,11 @@ json_global_data = {
 
 class Init_Introduce():
     def __init__(self):
-        print("欢迎使用智慧教育助手！")
         print("请配置好配置文件config.yml")
         print("Author: AuroBreeze")
         print("Version: 1.0.0")
         print("Date: 2024-11-09")
         print("License: MIT")
-        print("Copyright: Copyright 2024-2021 AuroBreeze")
-        print("Status: Production")
         print("GITHUB URL: https://github.com/AuroBreeze/Z-XinAnswerautomatic")
         print("BLOG URL: https://blog.aurobreeze.top/")
         print("此应用仅供学习交流使用，出现其他任何问题，与作者无关。")
@@ -207,9 +202,26 @@ class Get_homework_afterclass(): #拿到所有题目的标题和ID
         return json_homework_total
 
 
+class Get_homework_final_info():
+    def dectect_homework_socre(self):
+        url = "https://v2.api.z-xin.net/stu/course/getJoinedCourse2"
+        header = {
+            "Authorization" : f"Bearer {json_global_data['token']}",
+            "User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
+        response = requests.get(url, headers=header).json()
+        code = response['code']
+        msg = response["msg"]
+        if code != 2000:
+            print("获取课程信息失败")
+            print(f"错误信息: {msg}")
+            return None
+        json_homework_final_info = {
+
+        }
+
+
 class Final_homework():
-    def judge_homnework_time(self):
-        pass
     def get_homework_info(self,homework_id):
         url = f"https://v2.api.z-xin.net/stu/homework/{homework_id}"
         header = {
@@ -366,16 +378,3 @@ if __name__ == '__main__':
     Final_homework = Final_homework() # 实例化提交作业类
     Final_homework.choose_homework_and_answer(Get_homework_afterclass_data)
 
-
-
-
-    # len = len(Get_homework_afterclass_data["id"])
-    # for i in range(len):
-    #     Get_homework_afterclass_data_id = Get_homework_afterclass_data["id"][i] # 遍历所有课后作业的ID
-    #     Get_homework_afterclass_data_title = Get_homework_afterclass_data["title"][i] # 遍历所有课后作业的标题
-    #
-    #
-    #     Final_homework_data = Final_homework.get_homework_info(Get_homework_afterclass_data_id) # 获取每道题目的信息
-    #     for Final_homework_data_info in Final_homework_data: # 遍历每道题目的信息
-    #         answer = ai_answer.get_ai_answer(Final_homework_data_info)
-    #         cout = AI_answer_homework().cout_homework_answer(answer,Final_homework_data_info["question_id"],Get_homework_afterclass_data_title)
