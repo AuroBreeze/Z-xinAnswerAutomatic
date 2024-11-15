@@ -1,4 +1,12 @@
+Software_Information:
+  name: "Z-xinAnswerAutomatic"
+  author: "AuroBreeze"
+  version: "1.0.2"
+  update: "2024-11-15"
+  license: "MIT"
+  github: "https://github.com/AuroBreeze/Z-xinAnswerAutomatic"
+  blog: "https://blog.aurobreeze.top/"
 Basic_Information:
-  username: "your_username"
-  password: "your_password"
-  api_key: "your_api_key"
+  username: ""
+  password: ""
+  api_key: ""
