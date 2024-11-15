@@ -10,5 +10,5 @@ class Init_Introduce():
         self.logger.Message_Log_Info("GITHUB地址：https://github.com/AuroBreeze/Z-XinAnswerautomatic")
         self.logger.Message_Log_Info("博客地址：https://blog.aurobreeze.top/")
         self.logger.Message_Log_Info("此应用仅供学习交流使用，出现其他任何问题，与作者无关。")
-        self.logger.Message_Log_Info("请按任意键继续...")
+        self.logger.Message_Log_Info("请按回车键继续...")
         input()

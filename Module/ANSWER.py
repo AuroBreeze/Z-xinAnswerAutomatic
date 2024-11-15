@@ -32,7 +32,7 @@ class ANSWER:
             cout = AI_answer_homework().cout_homework_answer(answer,Final_homework_data_info["question_id"],Get_homework_afterclass_data_title)
         Logger().Message_Log_Info("获取答案完成")
 
-        Logger().Message_Log_Error("请自行提交完成，按任意键检查正确率")
+        Logger().Message_Log_Error("请自行提交完成，按回车键检查正确率")
         input()
         self.verify_score()
 
@@ -45,6 +45,14 @@ class ANSWER:
 
         Correctness = (finalScore / scoreTotal)* 100
         Logger().Message_Log_Error(f"本次作业的正确率为{Correctness}%")
+
+    def clear_data(self):
+        json_homework_total_afterclass["title"].clear()
+        json_homework_total_afterclass["id"].clear()
+        json_homework_single_afterclass["start_time"] = ""
+        json_homework_single_afterclass["end_time"] = ""
+
+
 
 
 
