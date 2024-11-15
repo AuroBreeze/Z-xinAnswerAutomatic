@@ -44,7 +44,11 @@ class ANSWER:
         finalScore = int(json_homework_single_afterclass["finalScore"])
 
         Correctness = (finalScore / scoreTotal)* 100
-        Logger().Message_Log_Error(f"本次作业的正确率为{Correctness}%")
+
+        Logger().Message_Log_Info(f"本次作业的总分数(客观题):{scoreTotal}")
+        Logger().Message_Log_Info(f"本次作业的AI答案最终分数:{finalScore}")
+
+        Logger().Message_Log_Error(f"本次作业的正确率:{Correctness}%")
 
     def clear_data(self):
         json_homework_total_afterclass["title"].clear()
