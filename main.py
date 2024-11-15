@@ -1,5 +1,5 @@
 __author__ = 'AuroBreeze'
-__version__ = '1.0.0'
+__version__ = '1.0.2'
 __date__ = '2024-11-09'
 __license__ = 'MIT'
 # BLOG URL: https://blog.aurobreeze.top/
@@ -7,8 +7,6 @@ __license__ = 'MIT'
 from Module.Introduce import Init_Introduce
 from Module.LoginIn import LoginIn
 from Module.Get_Homework_Info import Get_homework_afterclass_total,Get_homework_afterclass_single
-from Module.Shared_Data import json_global_data_stu,json_homework_single_afterclass,json_homework_total_afterclass
-from Module.AI_Answer import AI_answer_homework
 from Module.ANSWER import ANSWER
 
 if __name__ == '__main__':

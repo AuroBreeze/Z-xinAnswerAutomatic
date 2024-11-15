@@ -4,7 +4,7 @@ class Init_Introduce():
         self.logger = Logger()
         self.logger.Message_Log_Info("欢迎使用Z-XinAnswerautomatic！")
         self.logger.Message_Log_Info("作者：AuroBreeze")
-        self.logger.Message_Log_Info("版本：1.0.0")
+        self.logger.Message_Log_Info("版本：1.0.2")
         self.logger.Message_Log_Info("日期：2024-11-09")
         self.logger.Message_Log_Info("许可证：MIT")
         self.logger.Message_Log_Info("GITHUB地址：https://github.com/AuroBreeze/Z-XinAnswerautomatic")
