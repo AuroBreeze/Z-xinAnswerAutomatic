@@ -37,8 +37,8 @@ class AI_answer_homework():
         except Exception as e:
             completion = "A"
 
-            Logger().Message_Log_Error(f"AI_answer_homework 错误信息：{e}")
-            Logger().Message_Log_Error("请参考文档：https://help.aliyun.com/zh/model-studio/developer-reference/error-code")
+            print(f"AI_answer_homework 错误信息：{e}")
+            print("请参考文档：https://help.aliyun.com/zh/model-studio/developer-reference/error-code")
         json_data={
             "homework_id":json_data["homework_id"],
             "question_id":json_data["question_id"],
@@ -48,6 +48,6 @@ class AI_answer_homework():
         return json_data
 
     def cout_homework_answer(self,answer_json,id,title):
-        Logger().Message_Log_Info(f"作业[{title}]：id:{id} 题目id：[{answer_json['question_id']}] 答案：[{answer_json['answer']}]")
+        print(f"作业[{title}]：id:{id} 题目id：[{answer_json['question_id']}] 答案：[{answer_json['answer']}]")
         pass
 

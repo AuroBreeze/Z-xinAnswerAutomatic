@@ -4,11 +4,11 @@ from Module.Get_Homework_Info import Get_homework_afterclass_single
 from Module.Shared_Data import json_homework_total_afterclass,json_homework_single_afterclass
 from Module.Logger import Logger
 class ANSWER:
+
     def choose_homework_and_answer(self):
-        Logger().Message_Log_Info("以下是所有课后作业：")
+        print("以下是所有作业：")
         for i in range(len(json_homework_total_afterclass["title"])):
-            Logger().Message_Log_Info(f"{i + 1}. {json_homework_total_afterclass['title'][i]}")
-        time.sleep(1)
+            print(f"{i + 1}. {json_homework_total_afterclass['title'][i]}")
         while True:
             try:
                 #Logger().Message_Log_Info("请输入你要提交的作业的序号：")
@@ -16,11 +16,11 @@ class ANSWER:
                 json_homework_single_afterclass["index"] = str(index) # 记录用户输入的作业序号,用来获取作业的index以便定位最后的分数
 
                 if index <= 0 or index > len(json_homework_total_afterclass["title"]):
-                    Logger().Message_Log_Info("输入的序号超出范围")
+                    print("输入的序号超出范围")
                 else:
                     break
             except:
-                Logger().Message_Log_Error("输入的序号有误")
+                print("输入的序号有误")
         Get_homework_afterclass_data_id = json_homework_total_afterclass["id"][index - 1] # 遍历所有课后作业的ID
         Get_homework_afterclass_data_title = json_homework_total_afterclass["title"][index - 1] # 遍历所有课后作业的标题
 
@@ -30,9 +30,8 @@ class ANSWER:
         for Final_homework_data_info in Final_homework_data: # 遍历每道题目的信息
             answer = AI_answer_homework().get_ai_answer(Final_homework_data_info)
             cout = AI_answer_homework().cout_homework_answer(answer,Final_homework_data_info["question_id"],Get_homework_afterclass_data_title)
-        Logger().Message_Log_Info("获取答案完成")
-
-        Logger().Message_Log_Error("请自行提交完成，按回车键检查正确率")
+        print("获取答案完成")
+        print("请自行提交完成，按回车键检查正确率(仅支持课后作业)")
         input()
         self.verify_score()
 
@@ -48,7 +47,7 @@ class ANSWER:
         Logger().Message_Log_Info(f"本次作业的总分数(客观题):{scoreTotal}")
         Logger().Message_Log_Info(f"本次作业的AI答案最终分数:{finalScore}")
 
-        Logger().Message_Log_Error(f"本次作业的正确率:{Correctness}%")
+        print(f"本次作业的正确率:{Correctness}%")
 
     def clear_data(self):
         json_homework_total_afterclass["title"].clear()

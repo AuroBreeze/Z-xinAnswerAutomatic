@@ -1,3 +1,5 @@
+import time
+
 import requests
 
 from Module.Shared_Data import json_global_data_stu,json_homework_total_afterclass,json_homework_single_afterclass
@@ -5,14 +7,46 @@ from Module.Logger import Logger
 
 
 class Get_homework_afterclass_total(): #拿到所有题目的标题和ID
+
+    def choose_homework(self):
+        while True:
+            try:
+                time.sleep(0.5)
+                print("请选择你要查找的作业："
+                "1）. 课后作业 2）. 课前预习 "
+                "3）. 课堂作业 4）. 课程实验 ")
+
+                choose = int(input("请输入你要查找的作业序号："))
+                if choose == 1:
+                    homework_type = "课后作业"
+                    return homework_type
+                elif choose == 2:
+                    homework_type = "课前预习"
+                    return homework_type
+                elif choose == 3:
+                    homework_type = "课堂作业"
+                    return homework_type
+                elif choose == 4:
+                    homework_type = "课程实验"
+                    return homework_type
+                else:
+                    print("输入的序号有误,请重新输入")
+            except:
+                print("输入的序号有误")
+                homework_type = "课后作业"
+                return homework_type
+
+
+
     def get_homework_total(self):
+        homework_type = self.choose_homework() #选择要查找的作业类型
         url = "https://v2.api.z-xin.net/stu/homework/filter"
         header = {
             "Authorization" : f"Bearer { json_global_data_stu['token']}",
             "User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
         }
         data = {
-            "category" : "课后作业",
+            "category" : f"{homework_type}",
             "student_id":  json_global_data_stu["student_id"],
             "tcc_id":  json_global_data_stu["tcc_id"]
         }
@@ -31,11 +65,11 @@ class Get_homework_afterclass_total(): #拿到所有题目的标题和ID
                     json_homework_total_afterclass["end_time"].append(num["endtime"])
 
             else:
-                Logger().Message_Log_Error("获取课后作业失败")
-                Logger().Message_Log_Error(f"错误信息: {msg}")
+                print(f"获取{homework_type}失败")
+                print(f"错误信息: {msg}")
 
         except:
-            Logger().Message_Log_Error("获取课后作业失败")
+            print(f"获取{homework_type}失败")
 
 class Get_homework_afterclass_single(): #拿到每道题目的详情
     def get_homework_info(self, homework_id):
@@ -101,6 +135,6 @@ class Get_homework_afterclass_single(): #拿到每道题目的详情
             json_homework_single_afterclass["id"] = str(homework_info["_id"])
 
         except:
-            Logger().Message_Log_Error("获取课后作业校准信息失败")
+            print("获取作业校准信息失败")
 
 
