@@ -1,7 +1,7 @@
 import yaml
 from openai import OpenAI
 
-from module.Logger import Logger
+from Module.Logger import Logger
 
 class AI_answer_homework():
     def __init__(self):
@@ -16,7 +16,6 @@ class AI_answer_homework():
 
         # 将content和answer_str拼接成一个新的字符串
         combined_string = json_data['content'].strip() + ' ' + answer_str.strip()
-
 
         try:
             client = OpenAI(
@@ -34,12 +33,10 @@ class AI_answer_homework():
                      'content':  f"{combined_string} 。'下面的问题如果是单选题请直接告诉我是哪个选项A,B,C,D(不要重复选项后面的内容)，如果是判断题请直接告诉我是T还是F,如果是填空题请直接告诉第几个空答案是什么，如果是写程序的题请直接将程序写出来(不需要任何解释)。"}
                 ]
             )
-            #print(completion.choices[0].message.content)
+
         except Exception as e:
             completion = "A"
-            # print(f"错误信息：{e}")
-            # print("请参考文档：https://help.aliyun.com/zh/model-studio/developer-reference/error-code")
-            #
+
             Logger().Message_Log_Error(f"AI_answer_homework 错误信息：{e}")
             Logger().Message_Log_Error("请参考文档：https://help.aliyun.com/zh/model-studio/developer-reference/error-code")
         json_data={
@@ -51,6 +48,6 @@ class AI_answer_homework():
         return json_data
 
     def cout_homework_answer(self,answer_json,id,title):
-        print(f"作业[{title}]：id:{id} 题目id：[{answer_json['question_id']}] 答案：[{answer_json['answer']}]")
+        Logger().Message_Log_Info(f"作业[{title}]：id:{id} 题目id：[{answer_json['question_id']}] 答案：[{answer_json['answer']}]")
         pass
 

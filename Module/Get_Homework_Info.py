@@ -1,7 +1,7 @@
 import requests
 
-from module.Shared_Data import json_global_data_stu,json_homework_total_afterclass,json_homework_single_afterclass
-from module.Logger import Logger
+from Module.Shared_Data import json_global_data_stu,json_homework_total_afterclass,json_homework_single_afterclass
+from Module.Logger import Logger
 
 
 class Get_homework_afterclass_total(): #拿到所有题目的标题和ID
@@ -66,7 +66,7 @@ class Get_homework_afterclass_single(): #拿到每道题目的详情
             json_homework_info["content"] = content
 
             if groupname == "单选" or groupname == "判断" or groupname == "多选":
-                socres += int(question["preseScore"])
+                socres += int(question["presetScore"])
 
             for answer in question["answer"]:
                 answer_choose = answer["mark"]

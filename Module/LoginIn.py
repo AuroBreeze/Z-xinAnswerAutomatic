@@ -1,8 +1,9 @@
 import requests
 import base64
-from module.Logger import Logger
+import yaml
 
-from module.Shared_Data import json_global_data_stu
+from Module.Logger import Logger
+from Module.Shared_Data import json_global_data_stu
 
 class Get_Token():
     def __init__(self, username, password):
@@ -129,8 +130,13 @@ class Get_Token():
             Logger().Message_Log_Error("获取tcc_id失败")
             return None
 
-    def clear_json_global_data_stu(self):
-        json_global_data_stu["token"] = ""
-        json_global_data_stu["student_id"] = ""
-        json_global_data_stu["tcc_id"] = ""
+class LoginIn():
+    def Get_Token_Main(self):
+        with open('config.yml', 'r', encoding='utf-8') as f:
+            config = yaml.load(f, Loader=yaml.FullLoader)
+        username = config["Basic_Information"]['username']
+        password = config["Basic_Information"]['password']
+
+        token = Get_Token(username,password).get_token()
+        tcc_id_stu = Get_Token(username,password).get_stu_info()
 
