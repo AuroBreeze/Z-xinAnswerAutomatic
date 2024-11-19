@@ -2,8 +2,6 @@ import requests
 import base64
 import yaml
 
-
-
 from Module.Shared_Data import json_global_data_stu
 
 class Get_Token():
@@ -25,18 +23,18 @@ class Get_Token():
             code = response['code']
             msg = response["msg"]
             if code == 2000:
-                print("登录成功")
+                print("[-]:登录成功")
                 token = response["data"]["token"]
                 json_global_data_stu["token"] = token  # 全局变量，存储token
 
-                print(f"token: {token}")
+                print(f"[-]:token: {token}")
             else:
 
-                print("登录失败")
-                print(f"错误信息: {msg}")
+                print("[-]:登录失败")
+                print(f"[-]:错误信息: {msg}")
                 return None
         except:
-            print("登录失败")
+            print("[-]:登录失败")
             return None
         return token
 
@@ -71,12 +69,12 @@ class Get_Token():
                     "student_id": student_id,
                     "tcc_id": tcc_id
                 }
-                print(f"学生信息: {json_data}\n")
+                print(f"[-]:学生信息: {json_data}\n")
             else:
-                print("获取学生信息失败")
+                print("[-]:获取学生信息失败")
                 return None
         except:
-            print("获取学生信息失败")
+            print("[-]:获取学生信息失败")
             return None
         return json_data
 
@@ -124,11 +122,11 @@ class Get_Token():
                 tcc_id = response['data'][0]['_id']
                 json_global_data_stu["tcc_id"] = str(tcc_id)  # 全局变量，存储tcc_id
             else:
-                print("获取tcc_id失败")
+                print("[-]:获取tcc_id失败")
                 return None
             return tcc_id
         except:
-            print("获取tcc_id失败")
+            print("[-]:获取tcc_id失败")
             return None
 
 class LoginIn():
