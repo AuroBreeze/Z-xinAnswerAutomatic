@@ -11,6 +11,6 @@ Basic_Information:
   api_key: ""
 Job_Information:
   Interaction_mode: 0 # 0: 自动模式，1: 交互模式
-  Homework: 0 # 0. 课后作业 1. 课程实验 2. 课堂作业 3. 课前预习
+  Homework: 0 # 0. 课后作业 3. 课程实验 2. 课堂作业 1. 课前预习
   Examination: 0 # 0. 不使用 1. 期中考试 2. 期末考试
   Answer_mode: 0 # 0. 自动答题 1. AI答题
