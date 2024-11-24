@@ -8,9 +8,12 @@ from Module.Introduce import Init_Introduce
 from Module.LoginIn import LoginIn
 from Module.Get_Homework_Info import Get_homework_afterclass_total,Get_homework_afterclass_single
 from Module.ANSWER import ANSWER
+from Module.Check_yml import Check_yml
 
 if __name__ == '__main__':
-    Init_Introduce() # 实例化欢迎类
+    Init_Introduce()  # 实例化欢迎类
+    Check_yml().main() # 检查配置文件是否存在
+
 
     LoginIn = LoginIn()
     LoginIn.Get_Token_Main() # 获取token并存储在全局变量json_global_data中

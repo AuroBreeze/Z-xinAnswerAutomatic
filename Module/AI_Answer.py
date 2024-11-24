@@ -1,13 +1,15 @@
 import yaml
 from openai import OpenAI
 
-
-
 class AI_answer_homework():
     def __init__(self):
         with open("config.yml", "r") as file:
             data = yaml.safe_load(file)
         self.api_key = data["Basic_Information"]["api_key"]
+        if self.api_key == "":
+            print("[-]:请在config.yml中配置api_key")
+            print("[-]:正在退出程序......")
+            exit()
 
     def get_ai_answer(self,json_data):
         #print(json_data)
@@ -28,7 +30,7 @@ class AI_answer_homework():
                 model="qwen-plus",  # 模型列表：https://help.aliyun.com/zh/model-studio/getting-started/models
                 messages=[
                     {'role': 'system',
-                     'content': '你更擅长中文和解决C++代码问题。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及恐怖主义，种族歧视，黄色暴力等问题的回答。'},
+                     'content': '你更擅长中文和解决C代码问题。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及恐怖主义，种族歧视，黄色暴力等问题的回答。'},
                     {'role': 'user',
                      'content':  f"{combined_string} 。'下面的问题如果是单选题请直接告诉我是哪个选项A,B,C,D(不要重复选项后面的内容)，如果是判断题请直接告诉我是T还是F,如果是填空题请直接告诉第几个空答案是什么，如果是写程序的题请直接将程序写出来(不需要任何解释)。"}
                 ]

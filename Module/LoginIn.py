@@ -32,12 +32,8 @@ class Get_Token():
 
                 print("[-]:登录失败")
                 print(f"[-]:错误信息: {msg}")
-                return None
         except:
             print("[-]:登录失败")
-            return None
-        return token
-
 
     def get_stu_info(self):
         url = "https://v2.api.z-xin.net/auth/user"
@@ -58,6 +54,10 @@ class Get_Token():
                 student_id = self.get_student_id(id)
                 tcc_id = self.get_tcc_id(id)
 
+                if tcc_id is None:
+                    print("[-]:BUG: tcc_id is None,正在退出......")
+                    exit();
+
                 json_global_data_stu["student_id"] = student_id  # 全局变量，存储学生id
                 json_global_data_stu["tcc_id"] = str(tcc_id)  # 全局变量，存储tcc_id
 
@@ -72,11 +72,8 @@ class Get_Token():
                 print(f"[-]:学生信息: {json_data}\n")
             else:
                 print("[-]:获取学生信息失败")
-                return None
         except:
             print("[-]:获取学生信息失败")
-            return None
-        return json_data
 
     def user_pass_base64(self):
         # 要编码的数据，通常是二进制格式
