@@ -12,7 +12,7 @@ import yaml
 
 class Check_yml:
     def __init__(self):
-        with open("config.yml", "r") as ymlfile:
+        with open("config.yml", "r",encoding="utf-8") as ymlfile:
             self.cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
         self.basic_info = self.cfg["Basic_Information"]
 
