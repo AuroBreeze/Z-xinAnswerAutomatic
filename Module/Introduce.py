@@ -2,7 +2,7 @@ import yaml
 from Module.Logger import Logger
 class Init_Introduce():
     def __init__(self):
-        with open('config.yml', 'r') as stream:
+        with open('config.yml', 'r',encoding='utf-8') as stream:
             self.config = yaml.load(stream, Loader=yaml.FullLoader)
 
         print("[-]:欢迎使用Z-XinAnswerautomatic!")
