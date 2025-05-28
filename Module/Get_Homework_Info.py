@@ -79,11 +79,6 @@ class Get_homework_afterclass_total(): #拿到所有题目的标题和ID
         homwork_id = data[num].get("homework",[])[num_1].get("_id","无ID信息")
         return homwork_id,num,num_1  # 返回选择的作业ID
 
-            
-
-        
-    
-        
 
 
 class Get_homework_afterclass_single(): #拿到每道题目的详情
@@ -106,7 +101,7 @@ class Get_homework_afterclass_single(): #拿到每道题目的详情
         }
         response = requests.get(url, headers=header).json()
 
-        print("获取到的json为："+ str(response))
+        # print("获取到的json为："+ str(response))
         questions = response["data"]["questionSets"][0]["questions"]  # 拿到所有题目
         for question in questions:
             groupname = question["groupName"]

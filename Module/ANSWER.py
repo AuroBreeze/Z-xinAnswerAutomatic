@@ -57,7 +57,7 @@ class ANSWER:
             for optparse in self.optparse_choose:
                 # index = int(json_homework_single_afterclass["index"])
                 Get_homework_afterclass_single().get_homework_info_sorce(num,num_1) # 获取爆破作业的分数
-                print(json_homework_single_afterclass)
+                # print(json_homework_single_afterclass)
 
 
                 Score = int(json_homework_single_afterclass["finalScore"])
@@ -73,7 +73,7 @@ class ANSWER:
                 # index = int(json_homework_single_afterclass["index"])
                 Get_homework_afterclass_single().get_homework_info_sorce(num,num_1)
                 finalScore = int(json_homework_single_afterclass["finalScore"])
-                print(finalScore)
+                # print(finalScore)
                 if finalScore == 0 or finalScore < Score:
                     pass
                 elif finalScore > Score or finalScore == scoreTotal:

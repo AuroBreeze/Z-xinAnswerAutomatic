@@ -21,7 +21,7 @@ if __name__ == '__main__':
     homework_json = Get_homework_afterclass_total().get_homework_total()
 
     choose_homework,num,num_1 = Get_homework_afterclass_total().choose_homework(homework_json)  # 选择课后作业类型
-    print(choose_homework)
+    # print(choose_homework)
 
     # collect_homework = Get_homework_afterclass_single().get_homework_info(choose_homework)  # 获取课后作业信息
 
