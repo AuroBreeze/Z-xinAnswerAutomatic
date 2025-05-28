@@ -18,10 +18,13 @@ if __name__ == '__main__':
     LoginIn = LoginIn()
     LoginIn.Get_Token_Main() # 获取token并存储在全局变量json_global_data中
 
-    Get_homework_afterclass_total().get_homework_total()
+    homework_json = Get_homework_afterclass_total().get_homework_total()
 
-    # homework_type = Get_homework_afterclass_total().choose_homework() # 选择课后作业类型
-    # total_homework = Get_homework_afterclass_total().get_homework_total(homework_type) # 获取所有课后作业的标题和ID 并存储在全局变量json_homework_total_afterclass中
-    # ANSWER().choose_homework_and_answer()
+    choose_homework,num,num_1 = Get_homework_afterclass_total().choose_homework(homework_json)  # 选择课后作业类型
+    print(choose_homework)
+
+    # collect_homework = Get_homework_afterclass_single().get_homework_info(choose_homework)  # 获取课后作业信息
+
+    ANSWER().choose_homework_and_answer(choose_homework,num,num_1)  # 选择答题模式并获取答案
 
 

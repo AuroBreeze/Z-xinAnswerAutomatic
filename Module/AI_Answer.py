@@ -45,11 +45,11 @@ class AI_answer_homework():
             "homework_id":json_data["homework_id"],
             "question_id":json_data["question_id"],
             "questionSet_id":json_data["questionSet_id"],
-            "answer":completion.choices[0].message.content#.upper()
+            "answer":completion.choices[0].message.content#.upper() # type:ignore
         }
         return json_data
 
-    def cout_homework_answer(self,answer_json,id,title):
-        print(f"作业[{title}]：id:{id} 题目id：[{answer_json['question_id']}] 答案：[{answer_json['answer']}]")
+    def cout_homework_answer(self):
+        # print(f"作业[{title}]：id:{id} 题目id：[{answer_json['question_id']}] 答案：[{answer_json['answer']}]")
         pass
 
