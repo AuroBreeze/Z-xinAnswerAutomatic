@@ -144,8 +144,11 @@ class Get_homework_afterclass_single(): #拿到每道题目的详情
 
             homework_info_list.append(json_homework_info)
         # print(homework_info_list)
+        homework_info_list_copy = []
+        for content in reversed(homework_info_list):
+            homework_info_list_copy.append(content)
 
-        return homework_info_list
+        return homework_info_list_copy  # 返回所有题目的信息
 
     def get_homework_info_sorce(self,num,num_1): #单个题目的详情存入json_homework_single_afterclass中并返回，使用AI要循环调用这个函数，爆破题目答案
         url = "https://v2.api.z-xin.net/stu/course/getJoinedCourse2"
