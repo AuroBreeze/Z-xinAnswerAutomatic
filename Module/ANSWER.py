@@ -12,9 +12,9 @@ class ANSWER:
 
     def choose_homework_and_answer(self,homework_id,num,num_1):
         Final_homework_data = Get_homework_afterclass_single().get_homework_info(homework_id) # 获取每道题目的信息
-        # print(Final_homework_data)
         scores = Get_homework_afterclass_single().collect_homework_score(homework_id) # 收集客观题目的分数
         json_homework_single_afterclass["scoreTotal"] = scores # 记录客观题目的总分数
+        # print(json_homework_single_afterclass)
         print("总分："+str(scores))
 
         self.choose_answer_mode(Final_homework_data,num,num_1)
@@ -60,7 +60,8 @@ class ANSWER:
                 # print(json_homework_single_afterclass)
 
 
-                Score = int(json_homework_single_afterclass["finalScore"])
+                Score = int(json_homework_single_afterclass["finalScore"]) # 获取爆破作业的总分数
+                # print(Score)
                 answer = [{"mark": choice} for choice in optparse]
                 data = {
                     "question_id": f"{Final_homework_data_info['question_id']}",
@@ -73,6 +74,7 @@ class ANSWER:
                 # index = int(json_homework_single_afterclass["index"])
                 Get_homework_afterclass_single().get_homework_info_sorce(num,num_1)
                 finalScore = int(json_homework_single_afterclass["finalScore"])
+                # print(finalScore)
                 # print(finalScore)
                 if finalScore == 0 or finalScore < Score:
                     pass
