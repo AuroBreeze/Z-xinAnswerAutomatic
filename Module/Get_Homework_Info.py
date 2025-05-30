@@ -67,16 +67,15 @@ class Get_homework_afterclass_total(): #拿到所有题目的标题和ID
                 finalScore = 0
             
             
-            json_homework_single_afterclass["title"] = title
-            json_homework_single_afterclass["_id"] = _id
-            json_homework_single_afterclass["endtime"] = endtiem
-            json_homework_single_afterclass["finalSore"] = finalScore   # 爆破的得分，非固定值
+          # 爆破的得分，非固定值
 
             print(f"[-]:编号：{i} |类别: {category} | 标题: {title} | 截至：{end}| 分数: {finalScore}")
             i+=1
 
         num_1 = int(input("[-]:请输入编号选择作业: "))
         homwork_id = data[num].get("homework",[])[num_1].get("_id","无ID信息")
+        
+        # print(homwork_id)
         return homwork_id,num,num_1  # 返回选择的作业ID
 
 
@@ -110,6 +109,7 @@ class Get_homework_afterclass_single(): #拿到每道题目的详情
         return socres 
     def get_homework_info(self, homework_id): #单个题目的详情存入json_homework_single_afterclass中并返回，使用AI要循环调用这个函数
         url = f"https://v2.api.z-xin.net/stu/homework/{homework_id}"
+        # print(url)
         header = {
             "Authorization": f"Bearer {json_global_data_stu['token']}",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
@@ -144,26 +144,27 @@ class Get_homework_afterclass_single(): #拿到每道题目的详情
 
             homework_info_list.append(json_homework_info)
         # print(homework_info_list)
-        homework_info_list_copy = []
-        for content in reversed(homework_info_list):
-            homework_info_list_copy.append(content)
+        # homework_info_list_copy = []
+        # for content in reversed(homework_info_list):
+        #     homework_info_list_copy.append(content)
 
-        return homework_info_list_copy  # 返回所有题目的信息
+        return homework_info_list  # 返回所有题目的信息
 
     def get_homework_info_sorce(self,num,num_1): #单个题目的详情存入json_homework_single_afterclass中并返回，使用AI要循环调用这个函数，爆破题目答案
         url = "https://v2.api.z-xin.net/stu/course/getJoinedCourse2"
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.NjZlYWJmYjlmOTJiZDYwMDE4YjY5ODY1.WCvIt246Jgw3g9oBRQEsW5Tu1PvE2_eFWPgOZx-ZsTw",
+            "Authorization": f"Bearer {json_global_data_stu['token']}",
         }
         response = requests.get(url, headers=headers).json()
 
         try:
             total_list = response["data"][num]["homework"]
             homework_info = total_list[num_1]
+            # print(homework_info)
 
             json_homework_single_afterclass["title"] = str(homework_info["title"])
-            json_homework_single_afterclass["finalScore"] = str(homework_info["studenthomework"][0]["finalScore"]) # 爆破的得分，非固定值
+            json_homework_single_afterclass["finalScore"] = int(homework_info["studenthomework"][0]["finalScore"]) # 爆破的得分，非固定值
             json_homework_single_afterclass["endtime"] = str(homework_info["endtime"])
             json_homework_single_afterclass["_id"] = str(homework_info["_id"])
 
