@@ -1,3 +1,4 @@
+
 __author__ = 'AuroBreeze'
 __version__ = '1.0.2'
 __date__ = '2024-11-09'
@@ -6,7 +7,7 @@ __license__ = 'MIT'
 
 from Module.Introduce import Init_Introduce
 from Module.LoginIn import LoginIn
-from Module.Get_Homework_Info import Get_homework_afterclass_total,Get_homework_afterclass_single
+from Module.Get_Homework_Info import Get_homework_afterclass_total
 from Module.ANSWER import ANSWER
 from Module.Check_yml import Check_yml
 
@@ -21,9 +22,6 @@ if __name__ == '__main__':
     homework_json = Get_homework_afterclass_total().get_homework_total()
 
     choose_homework,num,num_1 = Get_homework_afterclass_total().choose_homework(homework_json)  # 选择课后作业类型
-    # print(choose_homework)
-
-    # collect_homework = Get_homework_afterclass_single().get_homework_info(choose_homework)  # 获取课后作业信息
 
     ANSWER().choose_homework_and_answer(choose_homework,num,num_1)  # 选择答题模式并获取答案
 
