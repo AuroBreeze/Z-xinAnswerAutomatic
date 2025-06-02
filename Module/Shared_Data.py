@@ -14,7 +14,7 @@ json_homework_single_afterclass = {  #课后作业信息用于校验AI正确率 
     "_id":"",
     "endtime":"",
     "standard": "", #作业的正确率，固定值
-    "finalScore": None, #爆破作业的的分数，非固定值
+    "finalScore": 0, #爆破作业的的分数，非固定值
     "scoreTotal": None, #作业应得总分，固定值
  }
 
